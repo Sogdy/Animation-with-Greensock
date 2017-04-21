@@ -1,0 +1,14 @@
+mixin nav(className, items)
+	nav(class=`${className}`)
+		ul(class=`${className}__list`)
+			each item in items
+				li(class=`${className}__item` + ( (activeClass === item.name) ? ` ${className}__item_active` : '') )
+					a(class=`${className}__link` href=`${item.link}`)= item.name
+
+
+
+mixin socials(socials)
+	each social in socials
+		li.socials__item
+				a(class=`socials__link socials__link_${social.name}` href=`${social.link}`)
+					i(class=`fa fa-${social.name}` aria-hidden="true")

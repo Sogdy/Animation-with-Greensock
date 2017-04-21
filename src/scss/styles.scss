@@ -1,0 +1,362 @@
+@import "reset";
+@import "variables";
+@import "mixins";
+@import "scrollDown";
+
+
+// General styles begin
+body {
+  @include text (#343230, $primary-font, 16px, 400);
+  background-color: #fff;
+  line-height: 21px;
+}
+// Typography styles begin
+p {
+  @include text (#343230, $primary-font, 13px, 400);
+  letter-spacing: 1px;
+}
+a {
+	text-decoration: none;
+	outline: none!important;
+	color: inherit;
+	transition: all, 0.5s;
+}
+@font-face {
+	font-family: 'Font Awesome';
+	src: url('fontawesome-webfont.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+h2.banner__title {
+	@include text (#a7627f, $primary-font, 40px, 400);
+	max-width: 750px;
+	text-transform: uppercase;
+	text-align: center;
+	line-height: 1.3;
+	margin: 15vh auto 9vh;
+	position: relative;
+	&:before {
+		height: 28px;
+		width: 2px;
+		content: "";
+		background: #fff;
+		position: absolute;
+		top: -52px;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+	@include tablet() {
+		font-size: 30px;
+	}
+	@include phone() {
+		font-size: 26px;
+		&:before {
+			background: transparent;
+		}
+	}
+}
+// Typography styles end
+.container {
+	width: 1200px;
+	margin: 0 auto;
+	@include desktop() {
+		width: 100%;
+		padding: 0 15px;
+	}
+}
+// General styles end
+
+
+// Header styles begin
+
+/* .header,
+.header__menu-block {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+} */
+.header {
+	display: block;
+	padding: 27px 0;
+	margin: 0 auto;
+	position: relative;
+	@include desktop() {
+		padding-right: 15px;
+		padding-left: 15px;
+	}
+}
+.menu-active .header__logo {
+	position: absolute;
+	top: 28px;
+	left: 0;
+	z-index: 6;
+	width: 155px;
+	@include desktop() {
+		left: 15px;
+	}
+}
+.header__logo {
+	width: 155px;
+	height: 30px;
+	display: inline-block;
+}
+.header__menu-block {
+	max-width: 230px;
+	float: right;
+	position: relative;
+} 
+
+// Main menu styles begin
+/*.header__nav {
+	margin-left: 76px;
+} */
+.header__nav_max {
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+	background: #fff;
+	top: 0;
+	right: 0;
+	width: 0;
+}
+.menu-active .header__nav_max{
+	/* display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center; */
+	display: block;
+	opacity: 1;
+	z-index: 5;
+}
+.header__main-menu_wrap {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	@include phone() {
+		top: 60%;
+	}
+}
+.header__main-menu__item {
+	opacity: 0;
+}
+/* .menu-active .header__main-menu_wrap {
+	opacity: 1;
+} */
+.header__main-menu__item {
+	width: 460px;
+	display: table;
+	margin: 0 auto;
+	/* display: flex;
+	justify-content: center; */
+    & + .header__main-menu__item {
+		border-top: 1px solid #eee;
+    }
+}
+.header__main-menu__link {
+	padding: 15px;
+	display: table;
+	text-transform: uppercase;
+	font-size: 13px;
+	letter-spacing: 1.3px;
+	margin: 0 auto;
+}
+.header__nav_min {
+	//display: flex;
+	display: inline-block;
+	cursor: pointer;
+}
+.menu-active .header__nav_min {
+	position: absolute;
+	width: 110px;
+	top: 0;
+	right: 0;
+	z-index: 20;
+	 .header__nav-close {
+		display: block;
+	}
+	.header__nav-open {
+		display: none;
+	}
+	@include phone() {
+		width: 90px;
+	}
+}
+.header__nav-close,
+.header__nav-open {
+	text-transform: uppercase;
+	float: left;
+}
+.header__nav-close{
+	opacity: 0;
+	display: none;
+}
+.header__nav-button {
+	float: right;
+	margin-left: 18px;
+	padding-top: 2px;
+	span {
+		width: 3px;
+		height: 18px;
+		transform: rotate(15deg);
+		background: #a7627f;
+		margin: 0 2px;
+		display: inline-block;
+	}
+}
+.menu-active .header__nav-button {
+	@include phone() {
+		margin-left: 0;
+	}
+}
+// Main menu styles end
+
+// Socials menu begin
+.header__socials {
+	/* display: flex;
+	margin-bottom: 14vh; */
+	margin: 50px auto 14vh;
+	display: table;
+	opacity: 0;
+	padding-right: 46px;
+	@include phone() {
+		margin-bottom: 0;
+	}
+}
+.socials__item {
+	display: inline-block;
+}
+.socials__link {
+	padding: 7px;
+}
+// Socials menu end  
+
+// Language menu begin
+.header__lang {
+	width: 54px;
+	display: inline-table;
+	position: absolute;
+	top: -29px;
+	left: -129px;
+	@include tablet() {
+		left: -90px;
+	}
+	@include phone() {
+		right: 0;
+		left: initial;
+		top: 10px;
+	}
+}
+.menu-active .header__lang {
+	position: fixed;
+	top: 4px;
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 6;
+	width: 100%;
+	text-align: center;
+	opacity: 0;
+	.header__lang-select_item {
+		display: inline-block;
+		opacity: 1;
+		&.current {
+			color: #A7627F;
+			opacity: 1;
+			&:after {
+				background: none;
+			}
+		}
+	}
+	.header__lang-select_link {
+		padding: 0 8px;
+	}
+	@include phone() {
+		top: 50px;
+	}	
+}
+.header__lang-select {
+	position: absolute;
+	top: 30px;
+	text-transform: uppercase;
+	position: relative;
+	@extend p;
+}
+/* .lang-active .header__lang-select_item {
+	opacity: 1;
+} */
+.header__lang-select_item {
+	opacity: 0;
+	&.current {
+		opacity: 1;
+		&:after {
+			content: "";
+			width: 12px;
+			height: 10px;
+			background: url(../images/arrow_down.svg) no-repeat;
+			position: absolute;
+			top: 6px;
+			right: 2px;
+		}
+	}
+}
+// Language menu end
+// Header styles end
+
+// Banner styles begin
+
+.banner {
+	background: url(../images/header_bg.jpg) no-repeat 50%;
+	background-size: cover;
+	/* display: flex;
+	flex-direction: column;
+	align-items: center; */
+	margin: 0 auto;
+	height: 100vh;
+}
+.banner__play {
+	max-width: 60px;
+	margin: 0 auto;
+	cursor: pointer;
+}
+.banner__play-text {
+	font-style: italic;
+}
+.banner__scroll-down_wrap {
+	max-width: 27px;
+	position: absolute;
+	bottom: 36px;
+	left: 50%;
+    transform: translateX(-50%);
+    cursor: pointer;
+    @include tablet() {
+    	bottom: 10px;
+    }
+}
+.menu-active .banner__scroll-down_wrap {
+	display: none;
+}
+// Banner styles  end
+
+// SVG styles begin
+#logo {
+	max-width: 155px;
+	.st0{fill-rule:evenodd;clip-rule:evenodd;fill:#A86280;}
+	.st1{fill:#010202;}
+}
+#play_icon {
+	width: 100%;
+	.st0{fill:#FFFFFF;}
+	.st1{fill:#A7627F;}
+}
+/* #scrolldown_icon {
+	width: 100%;
+	.st0{fill:none;stroke:#fff;stroke-width:2;}
+	.st1{fill:#A7627F;}
+} */
+
+
+// SVG styles end
+
+
+/* background: #A7627F
+    linear-gradient(transparent 0%, transparent 50%, #fff 50%, #fff 100%); */
